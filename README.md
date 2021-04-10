@@ -15,3 +15,11 @@ Deploy cloud functions to Firebase:
 cd functions
 firebase deploy
 ```
+
+## Example frontend
+
+Serve `index.html` from root directory:
+
+```
+serve
+```

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Coinbase Demo</title>
+    <style>
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: system-ui;
+      }
+      button {
+        background-color: rgb(22, 82, 240);
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        height: 40px;
+        cursor: pointer;
+      }
+      p {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn">Buy Something with Crypto</button>
+
+    <p id="pay"></p>
+
+    <script>
+      const btn = document.getElementById("btn");
+      const pay = document.getElementById("pay");
+
+      btn.onclick = async () => {
+        const res = await fetch(
+          //"http://localhost:5000/coinbase-commerce-tut/us-central1/createCharge"
+          "https://us-central1-coinbase-commerce-tut.cloudfunctions.net/createCharge"
+        );
+        const data = await res.json();
+
+        console.log(data);
+
+        pay.innerHTML = `<a href="${data.hosted_url}">Pay Now!</a>`;
+      };
+    </script>
+  </body>
+</html>
